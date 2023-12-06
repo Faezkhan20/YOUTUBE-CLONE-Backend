@@ -2,19 +2,25 @@ import  express  from "express";
 import { hello } from "./Controllers/GlobalController.js";
 import router from "./Routes/index.js"
 import mongoose from "mongoose";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
+import morgan from 'morgan';
+import cors from 'cors'
+
+
 
 
 const app = express()
 dotenv.config()
 app.use(express.json())
+app.use(morgan('dev'))
+app.use(cors())
 
 
 app.use("/youtube/api/v1",router)
 
-app.get("/",function (req,res){
-    res.send("welcome to youtube beackend server")
-})
+// app.get("/",function (req,res){
+//     res.send("welcome to youtube beackend server")
+// })
 
 app.get("/hello",hello)
 
